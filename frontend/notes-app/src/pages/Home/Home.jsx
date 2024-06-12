@@ -62,7 +62,17 @@ function Home() {
     
     >
 
-      <AddEditNotes/>
+      <AddEditNotes
+        type={openAddEditModal.type}
+        noteData={openAddEditModal.data}
+        onClose={()=>{
+        setOpenAddEditModal({
+          isShown:false,
+          type:'add',
+          data:null,
+        });
+       }}
+      />
       </Modal>
     </>
   )
