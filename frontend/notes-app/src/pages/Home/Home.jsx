@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import NoteCard from '../../components/Cards/NoteCard'
 import {MdAdd} from 'react-icons/md'
@@ -14,6 +14,8 @@ function Home() {
       type:'add',
       data:null,
     });
+
+
 
   return (
     <>

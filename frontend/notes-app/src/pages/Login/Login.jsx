@@ -69,6 +69,7 @@ const navigate = useNavigate();
     <Navbar/>
          <div className='flex items-center justify-center mt-28'>
           <div className='py-10 bg-white border rounded w-96 px-7'>
+            
             <form onSubmit={handleLogin}>
               <h4 className='text-2xl mb-7'>Login</h4>
 

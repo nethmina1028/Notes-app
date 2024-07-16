@@ -12,7 +12,7 @@ const AddEditNotes =({noteData,type,onClose})=> {
    const[error,setError]=useState(null);
 
       //Add Note
-      const addNote = async () =>{};
+      const addNewNote = async () =>{};
 
       //Edit Note
       const editNote = async () =>{};
@@ -35,7 +35,7 @@ const AddEditNotes =({noteData,type,onClose})=> {
         if(type ==='edit'){
           editNote();
         }else{
-          addNote();
+          addNewNote();
         
         }
 
