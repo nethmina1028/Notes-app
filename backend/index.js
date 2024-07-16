@@ -63,7 +63,7 @@ app.use(
                const user = new User({
                 fullName,
                 email,
-                password
+                password,
 
                });
 
