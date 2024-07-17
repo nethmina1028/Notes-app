@@ -16,12 +16,12 @@ function Home() {
       type:'add',
       data:null,
     });
-
+    
+    const [allNotes,setAllNotes] = useState([]);
     const [userInfo,setUserInfo] = useState(null);
     const navigate = useNavigate();
 
       //Get user Info
-     
 
       const getUserInfo = async () => {
         try{
@@ -39,8 +39,26 @@ function Home() {
         
       };
 
+       //Get all notes
+
+       const getAllNotes = async () => {
+        try{
+          const response = await axiosInstance.get("/get-all-notes");
+          if(response.data && response.data.notes){
+            setAllNotes(response.data.notes);
+          }
+          }catch(error){
+           console.log("An Expected error occured");
+            
+           }
+           
+        };
+        
+      
+
       useEffect(() => {
         getUserInfo();
+        getAllNotes();
         return () => {};
       }, []);
 
@@ -50,17 +68,35 @@ function Home() {
         
         <div className='container mx-auto'>
           <div className='grid grid-cols-3 gap-4 mt-8'>
-          <NoteCard
-             title="Meeting on 7th April"
-             date="April 7 2021"
-             content="Meeting on 7th April Meeting on 7th April "
-             tags="#Meeting"
-             isPinned={true}
-             onEdit={() =>{}}
-             onDelete={() =>{}}
-             onPinNote={() =>{}}
-          />
 
+            {allNotes.map((item,index) => (
+               <NoteCard
+                key={item._id}
+               title={item.title}
+               date={item.createdOn} // npm i moment
+               content={item.content}
+               tags={item.tags}
+               isPinned={item.isPinned}
+               onEdit={() =>{}}
+               onDelete={() =>{}}
+               onPinNote={() =>{}}
+            />
+             )) }
+           
+           {/* <NoteCard
+          <NoteCard
+               title="Meeting on 7th April"
+               date="April 7 2021"
+               content="Meeting on 7th April Meeting on 7th April "
+               tags="#Meeting"
+               isPinned={true}
+               onEdit={() =>{}}
+               onDelete={() =>{}}
+               onPinNote={() =>{}}
+            />
+
+            */}
+            
            </div>
 
         </div>
