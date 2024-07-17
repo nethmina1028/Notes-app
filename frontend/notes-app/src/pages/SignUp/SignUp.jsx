@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar/Navbar'
 import PasswordInput from '../../components/Input/PasswordInput';
 import { Link ,useNavigate } from 'react-router-dom'
 import { validateEmail } from '../../utils/helper';
-
+import axiosInstance from '../../utils/axioslnstance';
 
 function SignUp() {
 
@@ -34,9 +34,41 @@ function SignUp() {
 
     setError("")
 
-    //SignUp api call
 
-   
+    
+    //SignUp api call
+                       
+    try {
+
+      const response = await axiosInstance.post("/create-account", {
+        //input filed values assign to variables (white) 
+        fullName: name,
+        email: email,
+        password: password,
+      });
+
+      //Handle success
+
+      if(response.data && response.data.error){
+        setError(response.data.message);
+       return
+      }
+      
+      if(response.data && response.data.message){
+        localStorage.setItem("token", response.data.accessToken);
+        navigate("/dashboard");
+      }
+
+    } catch (error) {
+        
+        //Handle error
+
+        if(error.response && error.response.data && error.response.data.message){
+          setError(error.response.data.message);
+        }else{
+          setError("Something went wrong. Please try again later.");
+        }
+    }
 
   };
   return (
