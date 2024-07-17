@@ -141,7 +141,8 @@ app.use(
         }
 
         return res.json({ 
-          user:{fullName: isUser.fullName,
+          user:{
+            fullName: isUser.fullName,
              email: isUser.email,
              _id:isUser._id,
              createOn:isUser.createOn, 
