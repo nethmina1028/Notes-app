@@ -128,7 +128,7 @@ function Home() {
 
   return (
     <>
-      <Navbar userInfo={userInfo} />
+      <Navbar userInfo={userInfo} onSearchNote={onSearchNote} />
 
       <div className="container mx-auto">
         {allNotes.length > 0 ? (
