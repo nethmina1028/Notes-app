@@ -9,6 +9,7 @@ import axiosInstance from "../../utils/axioslnstance";
 import Toast from "../../components/ToastMessage/Toast";
 import EmptyCard from "../../components/EmptyCard/EmptyCard";
 import AddNotesImg from "../../assets/images/add-notes.svg";
+import NoDataImg from "../../assets/images/no-data.svg";
 
 function Home() {
   const [openAddEditModal, setOpenAddEditModal] = useState({
@@ -120,6 +121,13 @@ function Home() {
     }
   };
 
+   //handel clear 
+
+   const handleClearSearch = () =>{
+    setIsSearch(false);
+    getAllNotes();
+   };
+
   useEffect(() => {
     getUserInfo();
     getAllNotes();
@@ -128,7 +136,7 @@ function Home() {
 
   return (
     <>
-      <Navbar userInfo={userInfo} onSearchNote={onSearchNote} />
+      <Navbar userInfo={userInfo} onSearchNote={onSearchNote} handleClearSearch={handleClearSearch} />
 
       <div className="container mx-auto">
         {allNotes.length > 0 ? (
@@ -163,8 +171,8 @@ function Home() {
           </div>
         ) : (
           <EmptyCard 
-          imgSrc={AddNotesImg}
-          message={`Start creating your first note! click the 'Add' button to jot down your thoughts!`}
+          imgSrc={isSearch ? NoDataImg:AddNotesImg}
+          message={isSearch ?`Oops! No notes found match`:`Start creating your first note! click the 'Add' button to jot down your thoughts!`}
           />
         )}
       </div>
