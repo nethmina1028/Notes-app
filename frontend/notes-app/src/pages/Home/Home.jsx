@@ -100,6 +100,26 @@ function Home() {
     }
   };
 
+
+  //Search Notes
+
+  const onSearchNote = async (query) =>{
+    try{
+      const response = await axiosInstance.get("/search-notes",{
+        params:{query},
+      });
+      
+      if(response.data && response.data.notes){
+        setIsSearch(true);
+        setAllNotes(response.data.notes);
+        
+      }
+    }catch(error){
+      console.log(error);
+      
+    }
+  };
+
   useEffect(() => {
     getUserInfo();
     getAllNotes();
