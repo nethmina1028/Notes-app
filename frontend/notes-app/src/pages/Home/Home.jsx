@@ -26,6 +26,8 @@ function Home() {
   const [allNotes, setAllNotes] = useState([]);
   const [userInfo, setUserInfo] = useState(null);
 
+  const[isSearch, setIsSearch] = useState(false);
+
   const navigate = useNavigate();
 
   //Edit model
