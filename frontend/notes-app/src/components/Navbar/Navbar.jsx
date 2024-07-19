@@ -14,13 +14,14 @@ const Navbar = ({userInfo , onSearchNote , handleClearSearch}) =>{
       navigate("/login");
    };
 
-   //
+   //search note
    const handleSearch = () =>{
     if(searchQuery){
       onSearchNote(searchQuery)
     }
    };
 
+   //clear search
     const onClearSearch = () =>{
      setSearchQuery('');
      handleClearSearch()

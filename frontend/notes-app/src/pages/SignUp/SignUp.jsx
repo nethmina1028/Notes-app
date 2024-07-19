@@ -41,7 +41,7 @@ function SignUp() {
     try {
 
       const response = await axiosInstance.post("/create-account", {
-        //input filed values assign to variables (white) 
+        //d values assign to variables (white) 
         fullName: name,
         email: email,
         password: password,
